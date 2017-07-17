@@ -50,8 +50,11 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td><input type="checkbox"></td>
                                                 <td>
-                                                    <a href="{{ url ('admin/category/'.$item->id.'/edit') }}" class="btn">Edit</a> |
-                                                    <a href="{{ url ('admin/category/'.$item->id.'/delete') }}" class="btn">Delete</a>
+                                                    <a href="{{ url ('admin/category/'.$item->id.'/edit') }}" class="btn">Edit</a>
+                                                    {!! Form::open(['method'=> 'DELETE','url'=>'admin/category/'.$item->id]) !!}
+
+                                                    <button type="submit" class ="btn" onclick="return confirm('Are you sure?')">Delete</button>
+                                                    {!! Form::close() !!}
 
 
                                                 </td>

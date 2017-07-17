@@ -97,6 +97,10 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cate = Category::findOrFail($id);
+        $cate->delete();
+        Session::flash('success',"Đã xóa!!");
+
+        return redirect('admin/category');
     }
 }
