@@ -31,6 +31,15 @@
                 <div class="col-sm-12">
                     <div class="white-box">
                         <h3 class="box-title">List Category:</h3>
+                        {!! Form::open(['method'=> 'GET','url'=>'admin/category/']) !!}
+                        <input type="text" name="keyword" class="form-control form-control-line"
+                               @if(Request::has('keyword'))
+                                    value="{{ Request::get('keyword')  }}"
+                               @endif
+                               placeholder="Type keyword ..."> <br>
+                        <input type="submit" value="Seach" class="btn btn-success">
+                        {!! Form::close() !!}
+
                         <a href="{{ url ('admin/category/create') }}" class="btn">Create new</a>
                         <div class="table-responsive">
                             <table class="table">
@@ -50,9 +59,9 @@
                                                 <td>{{ $item->title }}</td>
                                                 <td><input type="checkbox"></td>
                                                 <td>
-                                                    <a href="{{ url ('admin/category/'.$item->id.'/edit') }}" class="btn">Edit</a>
-                                                    {!! Form::open(['method'=> 'DELETE','url'=>'admin/category/'.$item->id]) !!}
 
+                                                    {!! Form::open(['method'=> 'DELETE','url'=>'admin/category/'.$item->id]) !!}
+                                                    <a href="{{ url ('admin/category/'.$item->id.'/edit') }}" class="btn">Edit</a>
                                                     <button type="submit" class ="btn" onclick="return confirm('Are you sure?')">Delete</button>
                                                     {!! Form::close() !!}
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
 use Session;
+
 class CategoryController extends Controller
 {
     /**
@@ -13,9 +14,17 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::all();
+        if($request->has('keyword')) {
+            $keyword = $request->get('keyword');
+            $categories = Category::where('title', 'like', '%'. $keyword .'%') ->get();
+        }
+        else {
+            $categories = Category::all();
+        }
+
+
         return view('admin.category.show', ['categories' => $categories]);
     }
 
@@ -99,7 +108,7 @@ class CategoryController extends Controller
     {
         $cate = Category::findOrFail($id);
         $cate->delete();
-        Session::flash('success',"Đã xóa!!");
+        Session::flash('success',"Đã xóa !!");
 
         return redirect('admin/category');
     }
