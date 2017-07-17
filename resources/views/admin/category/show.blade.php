@@ -19,6 +19,13 @@
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
+            @if(Session::has('success'))
+            <div class="col-sm-12"style="width: 103%; margin-left: -15px;">
+                <div class="white-box" style="width: 100%;">
+                    <div class="alert alert-success">{{ Session::get('success') }} </div>
+                </div>
+            </div>
+            @endif
             <!-- /row -->
             <div class="row">
                 <div class="col-sm-12">

@@ -23,6 +23,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::group(['middleware' => ['ckAdmin']], function(){
         //phai login voi quyen admin moi xem duoc
         Route::get('admin','Admin\DashboardController@index');
-        Route::get('admin/category', 'Admin\CategoryController@index');
+        Route::resource('admin/category', 'Admin\CategoryController');
     });
 });

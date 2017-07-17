@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Category;
+use Session;
 class CategoryController extends Controller
 {
     /**
@@ -25,7 +26,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        //đây là create.
+        return view('admin.category.create');
     }
 
     /**
@@ -37,6 +39,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         //
+        $c = new Category();
+        $c->title = $request->title;
+        $c->status = $request->status;
+        $c->save();
+        Session::flash('success',"Thêm mới ok rồi!!");
+
+        return redirect('admin/category');
     }
 
     /**
