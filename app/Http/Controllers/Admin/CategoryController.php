@@ -56,7 +56,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -67,7 +67,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cate = Category::findOrFail($id);
+        return view('admin.category.edit', ['cate' => $cate]);
     }
 
     /**
@@ -79,7 +80,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $cate = Category::findOrFail($id);
+        $cate->title = $request->title;
+        $cate->status = $request->status;
+        $cate->save();
+        Session::flash('success',"Sửa tành công!!");
+
+        return redirect('admin/category');
     }
 
     /**
